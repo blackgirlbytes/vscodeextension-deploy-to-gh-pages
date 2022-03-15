@@ -47,7 +47,7 @@ export class Repositories {
                     detail: default_branch,
                 }));
 
-                vscode.window.showQuickPick(items).then(selection => {
+                vscode.window.showQuickPick(items, {placeHolder: 'Choose the repo you want to deploy to GitHub Pages'}).then(selection => {
                     // the user canceled the selection
                     if (!selection) {
                         return;
