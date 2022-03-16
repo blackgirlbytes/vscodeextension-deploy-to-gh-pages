@@ -2,6 +2,11 @@
 
 The **Deploy to GitHub Pages** lets you quickly deploy your static web page (Jekyll or HTML) to GitHub Pages without leaving your IDE.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/22990146/158666441-bdab76ba-b634-4eb6-926a-ce2da3898f01.gif"/>
+</p>
+
+
 ## Why Deploy to GitHub Pages?
 
 The purpose of this extension is to improve convenience for developers, especially newer developers. 
