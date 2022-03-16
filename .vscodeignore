@@ -1,0 +1,10 @@
+.github
+.readme/**
+.vscode/**
+out/**
+node_modules/**
+src/**
+.eslintrc*
+.gitignore
+**/*.svg
+**/*.ts

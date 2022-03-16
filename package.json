@@ -1,7 +1,8 @@
 {
 	"name": "deploy-to-github-pages",
-	"displayName": "deploy-to-github-pages",
+	"displayName": "Deploy to GitHub Pages",
 	"description": "Use this extension to deploy your static web page to GitHub Pages",
+	"icon": "resources/icons/my_icon.png",
 	"version": "0.0.1",
 	"publisher": "blackgirlbytes",
 	"engines": {
