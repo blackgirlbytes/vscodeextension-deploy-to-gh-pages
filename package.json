@@ -13,8 +13,13 @@
 		"type": "git",
 		"url": "https://github.com/blackgirlbytes/vscodeextension-deploy-to-gh-pages"
 	},
-	"categories": [
-		"Other"
+    "keywords": [
+        "github",
+        "github pages"
+    ],
+    "categories": [
+        "Education",
+        "Other"
 	],
 	"activationEvents": [
 		"*"

@@ -13,6 +13,7 @@ export class Repositories {
         }
         return repoList
     }
+    
     async postToGitHubPages(repo: any, branch: any, userInfo: any, octokit: Octokit) {
         let message: string = 'Unable to post on GitHub Pages'
         try {
