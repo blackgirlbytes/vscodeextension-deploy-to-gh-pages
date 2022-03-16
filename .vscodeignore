@@ -1,10 +1,5 @@
-.github
-.readme/**
-.vscode/**
-out/**
-node_modules/**
-src/**
-.eslintrc*
-.gitignore
-**/*.svg
-**/*.ts
+out
+node_modules
+.vscode-test/
+*.vsix
+vscode.d.ts
