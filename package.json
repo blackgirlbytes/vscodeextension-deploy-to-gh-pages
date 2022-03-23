@@ -30,8 +30,7 @@
 		"commands": [
 			{
 				"command": "extension.deployToGitHubPages",
-				"title": "Deploy to GitHub Pages",
-				"enablement": "gitOpenRepositoryCount >= 1"
+				"title": "Deploy to GitHub Pages"
 			}
 		]
 	},
