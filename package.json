@@ -14,18 +14,19 @@
 		"type": "git",
 		"url": "https://github.com/blackgirlbytes/vscodeextension-deploy-to-gh-pages"
 	},
-    "keywords": [
-        "github",
-        "github pages"
-    ],
-    "categories": [
-        "Education",
-        "Other"
+	"keywords": [
+		"github",
+		"github pages"
+	],
+	"categories": [
+		"Education",
+		"Other"
 	],
 	"activationEvents": [
 		"*"
 	],
 	"main": "./out/extension.js",
+	"browser": "./dist/web/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -37,6 +38,7 @@
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
+		"compile-web": "webpack",
 		"lint": "eslint . --ext .ts,.tsx",
 		"watch": "tsc -watch -p ./"
 	},
@@ -46,7 +48,12 @@
 		"@typescript-eslint/eslint-plugin": "^4.16.0",
 		"@typescript-eslint/parser": "^4.16.0",
 		"eslint": "^7.21.0",
-		"typescript": "^4.6.2"
+		"typescript": "^4.6.2",
+		"ts-loader": "^9.2.2",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0",
+		"@types/webpack-env": "^1.16.0",
+		"process": "^0.11.10"
 	},
 	"dependencies": {
 		"@octokit/rest": "^18.0.0"
