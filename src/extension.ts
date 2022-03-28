@@ -8,11 +8,11 @@ export async function activate(context: vscode.ExtensionContext) {
 	const credentials = new Credentials();
 	const repositories = new Repositories();
 	await credentials.initialize(context);
-	
+
 	const disposable = vscode.commands.registerCommand('extension.deployToGitHubPages', async () => {
 		const octokit = await credentials.getOctokit();
 		const userInfo = await octokit.users.getAuthenticated();
-		const quickPickList = await repositories.handleQuickPickList(userInfo, octokit)
+		const quickPickList = await repositories.handleQuickPickList(userInfo, octokit);
 	});
 
 	context.subscriptions.push(disposable);
