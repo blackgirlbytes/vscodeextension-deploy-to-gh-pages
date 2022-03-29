@@ -26,6 +26,7 @@
 		"*"
 	],
 	"main": "./out/extension.js",
+	"browser": "./dist/web/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -35,10 +36,12 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
+		"vscode:prepublish": "npm run compile && npm run compile-web",
 		"compile": "tsc -p ./",
+		"compile-web": "webpack",
 		"lint": "eslint . --ext .ts,.tsx",
-		"watch": "tsc -watch -p ./"
+		"watch": "tsc -watch -p ./",
+		"watch-web": "webpack --watch"
 	},
 	"devDependencies": {
 		"@types/node": "^10.14.17",
@@ -46,7 +49,13 @@
 		"@typescript-eslint/eslint-plugin": "^4.16.0",
 		"@typescript-eslint/parser": "^4.16.0",
 		"eslint": "^7.21.0",
-		"typescript": "^4.6.2"
+		"typescript": "^4.6.2",
+		"@vscode/test-web": "^0.0.22",
+		"ts-loader": "^9.2.2",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0",
+		"@types/webpack-env": "^1.16.0",
+		"process": "^0.11.10"
 	},
 	"dependencies": {
 		"@octokit/rest": "^18.0.0"
