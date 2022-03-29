@@ -38,13 +38,6 @@ export class Repositories {
         }
     }
     async handleQuickPickList(userInfo: any, octokit: Octokit) {
-
-        // make sure this project is a git repository
-        const result: Array<string> | undefined = await vscode.commands.executeCommand('git.api.getRepositories');
-        if (result && result.length < 1) {
-            return vscode.window.showInformationMessage("This project doesn't appear to be a git repo. Make sure you have published your project to GitHub before you enable GitHub Pages.");
-        }
-
         const repoList = await this.getRepoList(userInfo, octokit);
         try {
             if (repoList) {
