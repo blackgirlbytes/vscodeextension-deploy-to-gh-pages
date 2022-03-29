@@ -6,16 +6,16 @@ export class Repositories {
         let repoList;
         try {
             repoList = await octokit.repos.listForUser({ username: userInfo.data.login, sort: 'created' });
-            return repoList
+            return repoList;
 
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
-        return repoList
+        return repoList;
     }
-    
+
     async postToGitHubPages(repo: any, branch: any, userInfo: any, octokit: Octokit) {
-        let message: string = 'Unable to post on GitHub Pages'
+        let message = 'Unable to post on GitHub Pages';
         try {
 
             const result = await octokit.repos.createPagesSite({
@@ -25,30 +25,37 @@ export class Repositories {
                     branch: branch,
                     path: '/'
                 }
-            })
+            });
             if (result) {
                 if (result.status === 201) {
-                    message = `Your GitHub Page will be available in a few minutes on: https://${userInfo.data.login}.github.io/${repo}/`
+                    message = `Your GitHub Page will be available in a few minutes on: https://${userInfo.data.login}.github.io/${repo}/`;
                 }
             }
         } catch (err: any) {
-            message = err.message
+            message = err.message;
         } finally {
             vscode.window.showInformationMessage(message);
         }
     }
     async handleQuickPickList(userInfo: any, octokit: Octokit) {
-        const repoList = await this.getRepoList(userInfo, octokit)
+
+        // make sure this project is a git repository
+        const result: Array<string> | undefined = await vscode.commands.executeCommand('git.api.getRepositories');
+        if (result && result.length < 1) {
+            return vscode.window.showInformationMessage("This project doesn't appear to be a git repo. Make sure you have published your project to GitHub before you enable GitHub Pages.");
+        }
+
+        const repoList = await this.getRepoList(userInfo, octokit);
         try {
             if (repoList) {
                 // add a theme icon to quick pick item 
-                let items: vscode.QuickPickItem[] = repoList.data.map(({ full_name, name, default_branch }) => ({
+                const items: vscode.QuickPickItem[] = repoList.data.map(({ full_name, name, default_branch }) => ({
                     label: `$(repo) Host on GitHub Pages: ${full_name}`,
                     description: name,
                     detail: default_branch,
                 }));
 
-                vscode.window.showQuickPick(items, {placeHolder: 'Choose the repo you want to deploy to GitHub Pages'}).then(selection => {
+                vscode.window.showQuickPick(items, { placeHolder: 'Choose the repo you want to deploy to GitHub Pages' }).then(selection => {
                     // the user canceled the selection
                     if (!selection) {
                         return;
@@ -59,11 +66,11 @@ export class Repositories {
                             if (answer === `Publish`) {
                                 this.postToGitHubPages(selection.description, selection.detail, userInfo, octokit);
                             }
-                        })
-                })
+                        });
+                });
             }
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
 
     }
